@@ -17,7 +17,7 @@ Then:
   - `listen_on unix:~/.talon/.kitty.sock`
 * Configure kitty to run with `--single-instance`. On Linux, just pass that flag when starting kitty. On macOS, see [the FAQ entry](https://sw.kovidgoyal.net/kitty/faq/#how-do-i-specify-command-line-options-for-kitty-on-macos).
 * Pending [dynamic list](https://github.com/talonvoice/talon/issues/625) support in Talon, set up a callback in your zsh chpwd function (or however your preferred shell does it) to alert Talon when your directory changes. Mine reads like this, in `.zshrc`:
-  -
+
 ```sh
 function chpwd {
     echo '{"cmd": "input", "text": "actions.user.update_kitty_subdirs_and_files()"}' | socat - UNIX-CONNECT:~/.talon/.sys/repl.sock >/dev/null 2>&1
