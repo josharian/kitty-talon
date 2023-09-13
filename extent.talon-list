@@ -1,0 +1,6 @@
+list: user.kitty_extent
+-
+all
+focused
+scrollback: all
+# todo: hook these up

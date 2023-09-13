@@ -1,0 +1,12 @@
+list: user.kitty_signal
+app: kitty
+-
+interrupt: SIGINT
+terminate: SIGTERM
+stop: SIGSTOP
+continue: SIGCONT
+kill: SIGKILL
+hang up: SIGHUP
+user one: SIGUSR1
+user two: SIGUSR2
+quit: SIGQUIT
