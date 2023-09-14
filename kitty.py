@@ -137,7 +137,10 @@ def clean_spoken_form(s: str):
     """Cleans the spoken form of a string"""
     # TODO: expand this, and potentially expand to multiple spoken forms,
     # e.g. "x.go" -> both "x dot go" and "x go"
-    return s.replace(".", " ").replace("-", " ").replace("_", " ").lower()
+    for char in ["-", "_", ".", "/", "~"]:
+        if char in s:
+            s = s.replace(char, " ")
+    return s.lower()
 
 
 def kitty_get_text(extent: str, title: str):
