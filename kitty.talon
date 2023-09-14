@@ -8,8 +8,21 @@ tag(): user.tabs
 
 window rename <user.text>:
     user.kitty_set_window_title(text)
-window {user.kitty_window_title}:
+window {user.kitty_window_title} [focus]:
     user.kitty_focus_window(kitty_window_title)
+window [{user.kitty_window_title}] [narrower|skinnier] [<user.number>]:
+    num = number or 2
+    user.kitty_resize_window(kitty_window_title or "", "horizontal", -1 * num)
+window [{user.kitty_window_title}] wider [<user.number>]:
+    user.kitty_resize_window(kitty_window_title or "", "horizontal", number or 2)
+window [{user.kitty_window_title}] shorter [<user.number>]:
+    num = number or 2
+    user.kitty_resize_window(kitty_window_title or "", "vertical", -1 * num)
+window [{user.kitty_window_title}] taller [<user.number>]:
+    user.kitty_resize_window(kitty_window_title or "", "vertical", number or 2)
+window [{user.kitty_window_title}] reset:
+    user.kitty_resize_window(kitty_window_title or "", "reset", 0)
+
 ^signal {user.kitty_signal} [in {user.kitty_window_title}]$:
     user.kitty_send_signal(kitty_signal, kitty_window_title or "")
 

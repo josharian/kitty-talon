@@ -53,6 +53,17 @@ class UserActions:
         kitty_send_rpc("focus-window", {"match": match})
         # todo: match, temporary
 
+    def kitty_resize_window(target: str, axis: str, amount: int):
+        """Resizes a window"""
+        print("kitty_resize_window", target, "along", axis, "by", amount)
+        # axis should be horizontal, vertical, or reset
+        payload = {"increment": amount, "axis": axis}
+        if target:
+            match = f'title:"{target}"'
+            print("match", match)
+            payload["match"] = match
+        kitty_send_rpc("resize-window", payload)
+
     def kitty_send_signal(signal: str, phrase: str):
         """Sends a signal to a window"""
         print("kitty_send_signal", phrase)
