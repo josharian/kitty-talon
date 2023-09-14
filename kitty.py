@@ -109,11 +109,20 @@ class UserActions:
                 all.remove(cull)
         subdirs = [f for f in all if os.path.isdir(os.path.join(cwd, f))]
         files = [f for f in all if os.path.isfile(os.path.join(cwd, f))]
-        ctx.lists["user.kitty_subdir"] = {subdir: subdir for subdir in subdirs}
-        ctx.lists["user.kitty_file"] = {file: file for file in files}
-        ctx.lists["user.kitty_go_file"] = {
-            file: file for file in files if file.endswith(".go")
+        ctx.lists["user.kitty_subdir"] = {
+            clean_spoken_form(subdir): subdir for subdir in subdirs
         }
+        ctx.lists["user.kitty_file"] = {clean_spoken_form(file): file for file in files}
+        ctx.lists["user.kitty_go_file"] = {
+            clean_spoken_form(file): file for file in files if file.endswith(".go")
+        }
+
+
+def clean_spoken_form(s: str):
+    """Cleans the spoken form of a string"""
+    # TODO: expand this, and potentially expand to multiple spoken forms,
+    # e.g. "x.go" -> both "x dot go" and "x go"
+    return s.replace(".", " ").replace("-", " ").replace("_", " ").lower()
 
 
 def kitty_get_text(extent: str, title: str):
@@ -247,7 +256,9 @@ def win_event_handler(window):
     titles = kitty_titles()
     if titles is None:
         return
-    ctx.lists["user.kitty_window_title"] = {title: title for title in titles}
+    ctx.lists["user.kitty_window_title"] = {
+        clean_spoken_form(title): title for title in titles
+    }
 
 
 def win_focus_handler(window):
