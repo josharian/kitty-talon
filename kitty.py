@@ -92,6 +92,21 @@ class UserActions:
             return
         actions.clip.set_text(text)
 
+    def kitty_scrollback_to_editor():
+        """Opens an editor with the scrollback"""
+        print("kitty_scrollback_to_editor")
+        text = kitty_get_text("all", "")
+        if text is None:
+            return
+        # TODO: setting for what editor to launch? or overrideable action?
+        subprocess.run(
+            [
+                "/usr/local/bin/code",
+                "-",
+            ],
+            input=text.encode("utf-8"),
+        )
+
     def kitty_cd(subdir: str):
         """Changes directory in the focused kitty window"""
         actions.insert(f"cd {subdir}\n")

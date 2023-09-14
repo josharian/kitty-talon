@@ -31,3 +31,7 @@ copy {user.kitty_extent} [in {user.kitty_window_title}]:
     user.kitty_copy(kitty_extent, kitty_window_title or "")
 
 preferences reload: key(cmd-ctrl-,)
+
+code that:
+    # TODO: extent? window title/other matcher?
+    user.kitty_scrollback_to_editor()
