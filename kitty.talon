@@ -19,6 +19,7 @@ session {user.kitty_session}:
 katie {user.kitty_subdir}: user.kitty_cd(kitty_subdir)
 katie root: user.kitty_cd("/")
 katie up: user.kitty_cd("..")
+katie pop: user.kitty_cd("-")
 katia: user.kitty_cd("..")
 
 go run {user.kitty_go_file}:
