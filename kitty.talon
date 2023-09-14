@@ -29,3 +29,5 @@ go run {user.kitty_go_file}:
 # I have added scrollback, but that is rather wordy.
 copy {user.kitty_extent} [in {user.kitty_window_title}]:
     user.kitty_copy(kitty_extent, kitty_window_title or "")
+
+preferences reload: key(cmd-ctrl-,)
